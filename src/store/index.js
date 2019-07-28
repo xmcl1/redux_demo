@@ -1,4 +1,9 @@
 // store相当于图书馆，用来存放数据的
+/**
+ * 注意：
+ * store必须是唯一的（例如下面的const store = createStore() 必须唯一）
+ */
+
 import { createStore } from "redux"
 import reducer from "./reducer"
 /**

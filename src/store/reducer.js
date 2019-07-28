@@ -1,4 +1,9 @@
 // reducer相当于图书馆管理员来管理所有状态state
+/**
+ * 注意：
+ * 1.reducer必须为纯函数（它内部的代码只接受外部传入的变量，不允许写：例如 new Date()、定义变量、发送ajax请求等，这些操作应该在外部使用）
+ * 2.reducer不允许改变state，只有state能改变自己（所以只能将state拷贝一份进行修改，再返回给state））
+ */
 import { DELETE_ITEM, CHANGE_VALUE, ADD_ITEM } from "../store/actionTypes"
 
 const defaultState = {
