@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Button, List } from 'antd';
 import store from "../store"
-import { DELETE_ITEM, CHANGE_VALUE, ADD_ITEM } from "../store/actionTypes"
+import { deleteItemAction, changeItemAction, addItemAction } from "../store/actions";
 
 class Home extends React.Component {
     constructor(props) {
@@ -30,21 +30,16 @@ class Home extends React.Component {
         })
     }
     addItem() {//添加项（判断值存在再添加，否则不添加）
-        this.refs.inputValue.state.value &&
-            store.dispatch({ type: ADD_ITEM })
+        if (!this.refs.inputValue.state.value) return
+        const action = addItemAction()
+        store.dispatch(action)
     }
     deleteItem(index) {//删除选项 
-        var action = {
-            type: DELETE_ITEM,
-            index: index
-        }
+        const action = deleteItemAction(index)
         store.dispatch(action)
     }
     inputValueChange(e) {//随着值的变化更新store里的状态
-        var action = {
-            type: CHANGE_VALUE,
-            value: e.target.value
-        }
+        const action = changeItemAction(e.target.value)
         store.dispatch(action)//根据input框值的变化分发一个action，并将最新的值传到reducer中
     }
     render() {
